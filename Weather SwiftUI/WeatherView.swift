@@ -7,27 +7,18 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct WeatherView: View {
+    
+    @State var isDarkMode = false
+    
     var body: some View {
         ZStack {
-            BackgroundView(topColor: .blue, bottomColor: Color("lightBlue"))
+            BackgroundView(topColor: isDarkMode ? .gray : .blue,
+                           bottomColor: isDarkMode ? .black : Color("lightBlue"))
             VStack {
-                Text("Kyiv, Ukraine")
-                    .foregroundColor(.white)
-                    .font(.system(size: 32, weight: .medium))
-                    .padding()
+                CityTextView(cityName: "Kyiv, Ukraine")
+                MainWeatherStatusView(imageName: "cloud.sun.fill", temperature: 22)
                 
-                VStack(spacing: 8) {
-                    Image(systemName: "cloud.sun.fill")
-                        .resizable()
-                        .renderingMode(.original) /// provide original color
-                        .aspectRatio(contentMode: .fit) /// fit in frame, fill out of frame
-                        .frame(width: 180, height: 180) /// put the last one
-                    Text("0°C")
-                        .foregroundColor(.white)
-                        .font(.system(size: 70, weight: .medium))
-                }
-                .padding(.bottom, 40)
                 
                 HStack(spacing: 20) {
                     WeaterDayView(day: "TUE", imageName: "cloud.sun.fill", temperature: 17)
@@ -40,16 +31,11 @@ struct ContentView: View {
                 Spacer()
                 
                 Button {
-                    print("tap")
-                    
+                    isDarkMode.toggle()
                 } label: {
-                    Text("Change Day of Time")
-                    
-                        .foregroundColor(.white)
-                        .frame(width: 280, height: 50)
-                        .background(ButtonBackgroundView())
-                        .cornerRadius(10)
-                        .font(.system(size: 20, weight: .bold))
+                    WeatherButtonView(textButton: "Change Day Time",
+                                      textColor: .white,
+                                      buttonBackground: isDarkMode ? AnyView(ButtonDarkBackgroundView()): AnyView(ButtonLightBackgroundView()))
                 }
 
                 Spacer()
@@ -60,7 +46,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        WeatherView()
     }
 }
 
@@ -98,10 +84,32 @@ struct BackgroundView: View {
     }
 }
 
-struct ButtonBackgroundView: View {
+struct CityTextView: View {
+    var cityName: String
+    
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [.cyan, .accentColor, .cyan]),
-                       startPoint: .topLeading,
-                       endPoint: .bottomTrailing)
+        Text(cityName)
+            .foregroundColor(.white)
+            .font(.system(size: 32, weight: .medium))
+            .padding()
+    }
+}
+
+struct MainWeatherStatusView: View {
+    var imageName: String
+    var temperature: Int
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Image(systemName: imageName)
+                .resizable()
+                .renderingMode(.original) /// provide original color
+                .aspectRatio(contentMode: .fit) /// fit in frame, fill out of frame
+                .frame(width: 180, height: 180) /// put the last one
+            Text("\(temperature)°C")
+                .foregroundColor(.white)
+                .font(.system(size: 70, weight: .medium))
+        }
+        .padding(.bottom, 40)
     }
 }
