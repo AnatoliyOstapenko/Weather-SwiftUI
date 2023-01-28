@@ -15,12 +15,14 @@ struct WeatherButtonView: View {
     var buttonBackground: AnyView
     
     var body: some View {
-        Text(textButton)
-            .foregroundColor(textColor)
-            .frame(width: 280, height: 50)
-            .background(buttonBackground)
-            .cornerRadius(10)
-            .font(.system(size: 20, weight: .bold))
+        VStack {
+            Text(textButton)
+                .foregroundColor(textColor)
+                .frame(width: 280, height: 50)
+                .background(buttonBackground)
+                .cornerRadius(10)
+                .font(.system(size: 20, weight: .bold))
+        }
     }
 }
 

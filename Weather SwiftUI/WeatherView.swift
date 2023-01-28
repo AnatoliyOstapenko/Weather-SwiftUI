@@ -13,7 +13,7 @@ struct WeatherView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView(isDarkMode: $isDarkMode)
+            BackgroundView(isDarkMode: isDarkMode)
             VStack {
                 CityTextView(cityName: "Kyiv, Ukraine")
                 MainWeatherStatusView(imageName: isDarkMode ? "moon.stars.fill" : "cloud.sun.fill", temperature: 22)
@@ -59,11 +59,13 @@ struct WeaterDayView: View {
             Text(day)
                 .foregroundColor(.white)
                 .font(.system(size: 16, weight: .medium))
+
             Image(systemName: imageName)
                 .resizable()
-                .renderingMode(.original)
-                .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
+                .symbolRenderingMode(.multicolor)
+                .aspectRatio(contentMode: .fit)
+                
             Text("\(temperature)°C")
                 .foregroundColor(.white)
                 .font(.system(size: 28, weight: .medium))
@@ -72,14 +74,14 @@ struct WeaterDayView: View {
 }
 
 struct BackgroundView: View {
-    @Binding var isDarkMode: Bool
+    var isDarkMode: Bool
     
     var body: some View {
         LinearGradient(gradient: Gradient(colors: [isDarkMode ? .gray : .blue,
                                                 isDarkMode ? .black : Color("lightBlue")]),
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
-        .edgesIgnoringSafeArea(.all)
+        .ignoresSafeArea()
     }
 }
 
@@ -102,7 +104,7 @@ struct MainWeatherStatusView: View {
         VStack(spacing: 8) {
             Image(systemName: imageName)
                 .resizable()
-                .renderingMode(.original) /// provide original color
+                .symbolRenderingMode(.multicolor) /// provide original color'
                 .aspectRatio(contentMode: .fit) /// fit in frame, fill out of frame
                 .frame(width: 180, height: 180) /// put the last one
             Text("\(temperature)°C")
