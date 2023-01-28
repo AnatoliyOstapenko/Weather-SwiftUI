@@ -34,7 +34,7 @@ struct ButtonLightBackgroundView: View {
 
 struct ButtonDarkBackgroundView: View {
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [.gray, .yellow, .gray]),
+        LinearGradient(gradient: Gradient(colors: [.gray, Color("graphite"), .gray]),
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
     }
