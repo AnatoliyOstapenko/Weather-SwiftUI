@@ -16,15 +16,16 @@ struct WeatherView: View {
             BackgroundView(isDarkMode: weatherViewModel.isDarkMode)
             VStack {
                 CityTextView(cityName: "Kyiv, Ukraine")
-                MainWeatherStatusView(imageName: weatherViewModel.isDarkMode ? "moon.stars.fill" : "cloud.sun.fill",
-                                      temperature: weatherViewModel.weatherList.first?.temp ?? 0)
+                
+                MainWeatherStatusView(imageName: weatherViewModel.weatherList.first?.icon ?? "01d",
+                                      temperature: weatherViewModel.weatherList.first?.temp ?? 23)
                 
                 HStack(spacing: 20) {
-                    WeaterDayView(day: "", imageName: "cloud.sun.fill", temperature: 17)
-                    WeaterDayView(day: "WED", imageName: "sun.max.fill", temperature: 18)
-                    WeaterDayView(day: "THU", imageName: "wind", temperature: 22)
-                    WeaterDayView(day: "FRI", imageName: "sunset.fill", temperature: 23)
-                    WeaterDayView(day: "SAT", imageName: "cloud.bolt.rain.fill", temperature: 19)
+                    ForEach(weatherViewModel.weatherList) { weather in
+                        WeaterDayView(day: weather.date,
+                                      imageName: weather.icon,
+                                      temperature: weather.temp)
+                    }
                 }
                 
                 Spacer()
@@ -65,9 +66,10 @@ struct WeaterDayView: View {
                 .fontWeight(.bold)
                 .minimumScaleFactor(0.6)
 
-            Image(systemName: imageName)
-                .resizable()
-                .frame(width: 45, height: 40)
+//            Image(systemName: imageName)
+            WeatherIconView(icon: imageName)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 45)
                 .symbolRenderingMode(.multicolor)
             
             Text("\(temperature)°C")
@@ -106,11 +108,12 @@ struct MainWeatherStatusView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            Image(systemName: imageName)
-                .resizable()
-                .symbolRenderingMode(.multicolor) /// provide original color'
-                .aspectRatio(contentMode: .fit) /// fit in frame, fill out of frame
-                .frame(width: 180, height: 180) /// put the last one
+            
+            WeatherIconView(icon: imageName)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 180)
+                .symbolRenderingMode(.multicolor)
+                                
             Text("\(temperature)°C")
                 .foregroundColor(.white)
                 .font(.system(size: 70, weight: .medium))

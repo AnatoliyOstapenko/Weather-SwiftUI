@@ -23,7 +23,7 @@ final class WeatherViewModel: ObservableObject {
                         let weatherData = WeatherData(date: $0.date.dayOfWeek,
                                                       temp: $0.main.temp.doubleToInt,
                                                       icon: $0.weather.first?.icon ?? "")
-                        
+                        print($0.weather.first?.icon ?? "No image")
                         /// openweathermap provide colection weather data, where there are a lot date dublicates
                         /// for instance: 2023-02-07, 2023-02-07, 2023-02-07, 2023-02-08
                         /// it is necessary to check whether the date already exists in the Array.
@@ -51,7 +51,8 @@ private extension Int {
         let date = Date(timeIntervalSinceReferenceDate: Double(self))
         dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.dateFormat = "EEEE"
-        return dateFormatter.string(from: date).capitalized
+        let string = dateFormatter.string(from: date)
+        return string.prefix(3).capitalized /// cut week day to 3 characters
     }
 }
 

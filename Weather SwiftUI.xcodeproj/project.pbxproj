@@ -17,6 +17,7 @@
 		BC390B0929912032004F5027 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC390B0829912032004F5027 /* NetworkManager.swift */; };
 		BCB305C929914B450088ADBC /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB305C829914B450088ADBC /* NetworkErrors.swift */; };
 		BCB305CB299150400088ADBC /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB305CA299150400088ADBC /* WeatherViewModel.swift */; };
+		BCB305CD2991B9B40088ADBC /* WeatherIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB305CC2991B9B40088ADBC /* WeatherIconView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		BC390B0829912032004F5027 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BCB305C829914B450088ADBC /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		BCB305CA299150400088ADBC /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		BCB305CC2991B9B40088ADBC /* WeatherIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				BC390B0429911FCD004F5027 /* WeatherModel.swift */,
 				BC390B0629911FF0004F5027 /* Password.swift */,
 				BC390B0829912032004F5027 /* NetworkManager.swift */,
+				BCB305CC2991B9B40088ADBC /* WeatherIconView.swift */,
 				BCB305C829914B450088ADBC /* NetworkErrors.swift */,
 				BC00BD412983FBED00A862A4 /* Assets.xcassets */,
 				BC00BD432983FBED00A862A4 /* Preview Content */,
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCB305CD2991B9B40088ADBC /* WeatherIconView.swift in Sources */,
 				BC390B0929912032004F5027 /* NetworkManager.swift in Sources */,
 				BC00BD402983FBEB00A862A4 /* WeatherView.swift in Sources */,
 				BC00BD3E2983FBEB00A862A4 /* Weather_SwiftUIApp.swift in Sources */,

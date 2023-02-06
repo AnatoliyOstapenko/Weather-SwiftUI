@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NetworkManager {
     
@@ -13,6 +14,7 @@ class NetworkManager {
     private init() {}
     
     private let initialURLString = "https://api.openweathermap.org/data/2.5/forecast?q="
+    private let initialIconURL = "https://openweathermap.org/img/wn/"
     
     func getWeatherData(city: String, completion: @escaping(Result<[WeatherList], NetworkErrors>) -> Void) {
         let stringURL = initialURLString + city + "&units=metric&appid=" + Password.key
@@ -44,6 +46,17 @@ class NetworkManager {
                 completion(.success(weatherData.list))
                 
             } catch { completion(.failure(.unableToComplete)) }
+        }
+        task.resume()
+    }
+    
+    func downloadImage(icon: String, completion: @escaping(UIImage?) -> Void) {
+        let imageURL = initialIconURL + icon + "@2x.png"
+        guard let url = URL(string: imageURL) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard error == nil, let data = data, let image = UIImage(data: data) else { return }
+            completion(image)
         }
         task.resume()
     }

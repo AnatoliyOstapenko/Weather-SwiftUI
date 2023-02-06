@@ -31,7 +31,8 @@ struct Weather: Codable {
 }
 
 // Supplementary struct
-struct WeatherData: Codable {
+struct WeatherData: Codable, Identifiable {
+    var id = UUID()
     let date: String
     let temp: Int
     let icon: String
@@ -42,7 +43,6 @@ struct WeatherData: Codable {
         self.icon = icon
     }
 }
-
 
 extension WeatherData: Equatable {
     /// conform Equatable to find date dublicats
