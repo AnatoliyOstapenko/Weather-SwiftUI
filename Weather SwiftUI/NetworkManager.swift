@@ -42,6 +42,7 @@ class NetworkManager {
             do {
                 let weatherData = try JSONDecoder().decode(WeatherModel.self, from: data)
                 completion(.success(weatherData.list))
+                
             } catch { completion(.failure(.unableToComplete)) }
         }
         task.resume()

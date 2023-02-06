@@ -12,13 +12,13 @@ struct WeatherModel: Codable {
 }
 
 struct WeatherList: Codable {
-    let data: Int /// check if you can change it with Data in the future
     let main: Main
     let weather: [Weather]
+    let date: Int
     
     enum CodingKeys: String, CodingKey {
         case main, weather
-        case data = "dt"
+        case date = "dt"
     }
 }
 
@@ -31,14 +31,22 @@ struct Weather: Codable {
 }
 
 // Supplementary struct
-struct WeatherData: Codable {
-    let data: Int
+struct WeatherData: Codable, Hashable {
+    let date: String
     let temp: Int
     let icon: String
     
-    init(data: Int, temp: Int, icon: String) {
-        self.data = data
+    init(date: String, temp: Int, icon: String) {
+        self.date = date
         self.temp = temp
         self.icon = icon
+    }
+}
+
+
+extension WeatherData: Equatable {
+    /// add Hashable to change Array woth Set, and conform Equatable to find date dublicats
+    static func == (lhs: WeatherData, rhs: WeatherData) -> Bool {
+        return lhs.date == rhs.date
     }
 }

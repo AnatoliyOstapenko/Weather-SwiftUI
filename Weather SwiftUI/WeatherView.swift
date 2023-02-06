@@ -19,9 +19,8 @@ struct WeatherView: View {
                 MainWeatherStatusView(imageName: weatherViewModel.isDarkMode ? "moon.stars.fill" : "cloud.sun.fill",
                                       temperature: weatherViewModel.weatherList.first?.temp ?? 0)
                 
-                
                 HStack(spacing: 20) {
-                    WeaterDayView(day: "TUE", imageName: "cloud.sun.fill", temperature: 17)
+                    WeaterDayView(day: "", imageName: "cloud.sun.fill", temperature: 17)
                     WeaterDayView(day: "WED", imageName: "sun.max.fill", temperature: 18)
                     WeaterDayView(day: "THU", imageName: "wind", temperature: 22)
                     WeaterDayView(day: "FRI", imageName: "sunset.fill", temperature: 23)
@@ -62,7 +61,9 @@ struct WeaterDayView: View {
         VStack {
             Text(day)
                 .foregroundColor(.white)
-                .font(.system(size: 16, weight: .bold))
+                .font(.title3)
+                .fontWeight(.bold)
+                .minimumScaleFactor(0.6)
 
             Image(systemName: imageName)
                 .resizable()
