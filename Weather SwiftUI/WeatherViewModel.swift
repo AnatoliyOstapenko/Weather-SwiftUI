@@ -9,7 +9,7 @@ import SwiftUI
 
 final class WeatherViewModel: ObservableObject {
     
-    @Published var weatherList: Set<WeatherData> = [] /// Array was changed with Set to avoid date dublicates
+    @Published var weatherList: [WeatherData] = []
     @Published var isDarkMode = false
     
     func setWeatherData(city: String) {
@@ -26,10 +26,10 @@ final class WeatherViewModel: ObservableObject {
                         
                         /// openweathermap provide colection weather data, where there are a lot date dublicates
                         /// for instance: 2023-02-07, 2023-02-07, 2023-02-07, 2023-02-08
-                        /// it is necessary to check whether the date already exists in the Set.
+                        /// it is necessary to check whether the date already exists in the Array.
                         
                         if !self.weatherList.contains(where: { $0.date == weatherData.date }) {
-                            self.weatherList.insert(weatherData)
+                            self.weatherList.append(weatherData)
                         }
                         
                     }

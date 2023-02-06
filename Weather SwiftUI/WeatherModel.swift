@@ -31,7 +31,7 @@ struct Weather: Codable {
 }
 
 // Supplementary struct
-struct WeatherData: Codable, Hashable {
+struct WeatherData: Codable {
     let date: String
     let temp: Int
     let icon: String
@@ -45,7 +45,7 @@ struct WeatherData: Codable, Hashable {
 
 
 extension WeatherData: Equatable {
-    /// add Hashable to change Array woth Set, and conform Equatable to find date dublicats
+    /// conform Equatable to find date dublicats
     static func == (lhs: WeatherData, rhs: WeatherData) -> Bool {
         return lhs.date == rhs.date
     }
