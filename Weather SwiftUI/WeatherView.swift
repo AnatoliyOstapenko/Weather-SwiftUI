@@ -62,10 +62,8 @@ struct WeaterDayView: View {
 
             Image(systemName: imageName)
                 .resizable()
-                .frame(width: 40, height: 40)
+                .frame(width: 45, height: 40)
                 .symbolRenderingMode(.multicolor)
-                .aspectRatio(contentMode: .fit)
-                
             Text("\(temperature)°C")
                 .foregroundColor(.white)
                 .font(.system(size: 28, weight: .medium))
