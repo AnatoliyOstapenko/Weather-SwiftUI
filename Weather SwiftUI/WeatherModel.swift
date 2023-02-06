@@ -8,10 +8,10 @@
 import Foundation
 
 struct WeatherModel: Codable {
-    let list: [List]
+    let list: [WeatherList]
 }
 
-struct List: Codable {
+struct WeatherList: Codable {
     let data: Int /// check if you can change it with Data in the future
     let main: Main
     let weather: [Weather]
@@ -28,4 +28,17 @@ struct Main: Codable {
 
 struct Weather: Codable {
     let icon: String
+}
+
+// Supplementary struct
+struct WeatherData: Codable {
+    let data: Int
+    let temp: Int
+    let icon: String
+    
+    init(data: Int, temp: Int, icon: String) {
+        self.data = data
+        self.temp = temp
+        self.icon = icon
+    }
 }

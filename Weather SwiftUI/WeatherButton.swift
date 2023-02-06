@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct WeatherButtonView: View {
     var textButton: String
     var textColor: Color
@@ -36,7 +34,7 @@ struct ButtonLightBackgroundView: View {
 
 struct ButtonDarkBackgroundView: View {
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [.gray, Color("graphite"), .gray]),
+        LinearGradient(gradient: Gradient(colors: [Color("graphite"), .gray, Color("graphite")]),
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
     }

@@ -9,14 +9,15 @@ import SwiftUI
 
 struct WeatherView: View {
     
-    @State var isDarkMode = false
+    @StateObject var weatherViewModel = WeatherViewModel()
     
     var body: some View {
         ZStack {
-            BackgroundView(isDarkMode: isDarkMode)
+            BackgroundView(isDarkMode: weatherViewModel.isDarkMode)
             VStack {
                 CityTextView(cityName: "Kyiv, Ukraine")
-                MainWeatherStatusView(imageName: isDarkMode ? "moon.stars.fill" : "cloud.sun.fill", temperature: 22)
+                MainWeatherStatusView(imageName: weatherViewModel.isDarkMode ? "moon.stars.fill" : "cloud.sun.fill",
+                                      temperature: weatherViewModel.weatherList.first?.temp ?? 0)
                 
                 
                 HStack(spacing: 20) {
@@ -30,14 +31,17 @@ struct WeatherView: View {
                 Spacer()
                 
                 Button {
-                    isDarkMode.toggle()
+                    weatherViewModel.isDarkMode.toggle()
                 } label: {
                     WeatherButtonView(textButton: "Change Day Time",
                                       textColor: .white,
-                                      buttonBackground: isDarkMode ? AnyView(ButtonDarkBackgroundView()): AnyView(ButtonLightBackgroundView()))
+                                      buttonBackground: weatherViewModel.isDarkMode ? AnyView(ButtonDarkBackgroundView()): AnyView(ButtonLightBackgroundView()))
                 }
 
                 Spacer()
+            }
+            .onAppear {
+                weatherViewModel.setWeatherData(city: "kyiv")
             }
         }
     }
@@ -58,15 +62,16 @@ struct WeaterDayView: View {
         VStack {
             Text(day)
                 .foregroundColor(.white)
-                .font(.system(size: 16, weight: .medium))
+                .font(.system(size: 16, weight: .bold))
 
             Image(systemName: imageName)
                 .resizable()
                 .frame(width: 45, height: 40)
                 .symbolRenderingMode(.multicolor)
+            
             Text("\(temperature)°C")
                 .foregroundColor(.white)
-                .font(.system(size: 28, weight: .medium))
+                .font(.system(size: 20, weight: .bold))
         }
     }
 }

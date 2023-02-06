@@ -14,9 +14,8 @@ class NetworkManager {
     
     private let initialURLString = "https://api.openweathermap.org/data/2.5/forecast?q="
     
-    func getWeatherData(city: String, completion: @escaping(Result<WeatherModel, NetworkErrors>) -> Void) {
-        let stringURL = initialURLString + "&units=metric&appid=" + Password.key
-        print(stringURL)
+    func getWeatherData(city: String, completion: @escaping(Result<[WeatherList], NetworkErrors>) -> Void) {
+        let stringURL = initialURLString + city + "&units=metric&appid=" + Password.key
         
         guard let url = URL(string: stringURL) else {
             completion(.failure(.invalidURL))
@@ -42,7 +41,7 @@ class NetworkManager {
             
             do {
                 let weatherData = try JSONDecoder().decode(WeatherModel.self, from: data)
-                completion(.success(weatherData))
+                completion(.success(weatherData.list))
             } catch { completion(.failure(.unableToComplete)) }
         }
         task.resume()
