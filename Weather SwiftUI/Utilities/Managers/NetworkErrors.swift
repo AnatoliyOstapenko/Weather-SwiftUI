@@ -8,9 +8,9 @@
 import Foundation
 
 enum NetworkErrors: Error {
-case invalidURL
-case invalidResponse
-case invalidData
-case invalidTask
-case unableToComplete
+    case invalidURL
+    case invalidResponse
+    case invalidData
+    case invalidTask
+    case unableToComplete
 }

@@ -34,7 +34,7 @@ class NetworkManager {
                 completion(.failure(.invalidResponse))
                 return
             }
-            print("Status code of HTTP response: \(response.statusCode)")
+           // print("Status code of HTTP response: \(response.statusCode)")
             
             guard let data = data else {
                 completion(.failure(.invalidData))
