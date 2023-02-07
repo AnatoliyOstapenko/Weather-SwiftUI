@@ -20,7 +20,7 @@ final class WeatherViewModel: ObservableObject {
             guard let self = self else { return }
             
             DispatchQueue.main.async {
-                self.isLoading = true
+                self.isLoading = false
                 switch weather {
                 case .success(let weatherList):
                     weatherList.forEach {

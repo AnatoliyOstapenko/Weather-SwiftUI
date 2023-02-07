@@ -1,5 +1,5 @@
 //
-//  AlertView.swift
+//  SpinnerView.swift
 //  Weather SwiftUI
 //
 //  Created by AnatoliiOstapenko on 07.02.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlertView: View {
+struct SpinnerView: View {
     var body: some View {
         ZStack {
             Color(.systemBackground)
@@ -20,6 +20,6 @@ struct AlertView: View {
 
 struct AlertView_Previews: PreviewProvider {
     static var previews: some View {
-        AlertView()
+        SpinnerView()
     }
 }

@@ -14,6 +14,7 @@ struct WeatherView: View {
     var body: some View {
         ZStack {
             BackgroundView(isDarkMode: weatherViewModel.isDarkMode)
+            if weatherViewModel.isLoading { SpinnerView() }
             VStack {
                 CityTextView(cityName: "Kyiv, Ukraine")
                 
@@ -38,6 +39,8 @@ struct WeatherView: View {
                                       buttonBackground: weatherViewModel.isDarkMode ? AnyView(ButtonDarkBackgroundView()): AnyView(ButtonLightBackgroundView()))
                 }
                 Spacer()
+                
+                
             }
             .onAppear {
                 weatherViewModel.setWeatherData(city: "kyiv")
@@ -47,7 +50,6 @@ struct WeatherView: View {
                       message: alert.message,
                       dismissButton: alert.dismissButton)
             }
-            
         }
     }
 }
